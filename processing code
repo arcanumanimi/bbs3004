@@ -1,7 +1,7 @@
 # First check if some necessary packages are installed and loaded
 # This is similar to Python code that reads (i.e) "import numpy as np"
 if(!"rstudioapi" %in% installed.packages()){
-    install.packages("rstudioapi")
+  install.packages("rstudioapi")
 }
 library(rstudioapi)
 
@@ -39,8 +39,8 @@ max(mygwas$a1f)
 
 # If you want or need to filter on higher allele frequency
 # Uncomment (remove hashtag, or use ctrl+shift+c) next two lines and adapt frequency (0.05) to whatever suits
-# mygwas <- mygwas[mygwas$a1f>0.05,]
-# mygwas <- mygwas[mygwas$a1f<0.95,]
+mygwas <- mygwas[mygwas$a1f>0.01,]
+mygwas <- mygwas[mygwas$a1f<0.95,]
 
 # We don't really need the allele frequency anymore now
 # So we can remove it
@@ -48,11 +48,4 @@ mygwas <- mygwas[,-6]
 
 # Save the file, so you can send it to FUMA
 # You may need to compress it (zip) for FUMA because of the maximum file size
-write.table(mygwas[,c(1:7)],"mygwas_processed.txt", col.names = T, row.names = F, quote = F, sep = "\t")
-View(mygwas)
-
-
-
-
-
-
+write.table(mygwas,"mygwas_processed.txt", col.names = T, row.names = F, quote = F, sep = "\t")
